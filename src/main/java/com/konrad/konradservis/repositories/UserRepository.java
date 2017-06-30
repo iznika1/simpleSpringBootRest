@@ -6,9 +6,9 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.konrad.konradservis.models.Korisnik;
+import com.konrad.konradservis.models.User;
 
 @Transactional
-public interface KorisniciRepository extends CrudRepository<Korisnik, Integer>  {
-	Optional<Korisnik> findById(Integer id);
+public interface UserRepository extends CrudRepository<User, Integer>  {
+	Optional<User> findById(Integer id);
 }

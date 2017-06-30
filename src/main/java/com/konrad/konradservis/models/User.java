@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "KORISNICI")
-public class Korisnik extends Root {
+public class User extends Root {
 
 	/**
 	 * 
@@ -20,7 +20,7 @@ public class Korisnik extends Root {
 	private String lastName;
 	private String email;
 	private String telNumber;
-	private Grad city;
+	private City city;
 	
 	@Column(name = "IME")
 	public String getFirstName() {
@@ -56,10 +56,10 @@ public class Korisnik extends Root {
 	
 	@ManyToOne(cascade=CascadeType.ALL) 
 	@JoinColumn(name = "GRADID")
-	public Grad getCity() {
+	public City getCity() {
 		return city;
 	}
-	public void setCity(Grad city) {
+	public void setCity(City city) {
 		this.city = city;
 	}
 	@Override
@@ -81,7 +81,7 @@ public class Korisnik extends Root {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Korisnik other = (Korisnik) obj;
+		User other = (User) obj;
 		if (city == null) {
 			if (other.city != null)
 				return false;

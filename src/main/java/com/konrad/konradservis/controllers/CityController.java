@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.konrad.konradservis.excepions.GradNotFoundException;
-import com.konrad.konradservis.models.Grad;
-import com.konrad.konradservis.repositories.GradRepository;
+import com.konrad.konradservis.excepions.CityNotFoundException;
+import com.konrad.konradservis.models.City;
+import com.konrad.konradservis.repositories.CityRepository;
 
 @RestController
 @RequestMapping("/gradovi")
-public class GradController {
+public class CityController {
 	
 	@Autowired
-	GradRepository gradRepository;
+	CityRepository gradRepository;
 	
 	@GetMapping(path="/")
-	public @ResponseBody Iterable<Grad> getAllGrads() {
+	public @ResponseBody Iterable<City> getAllGrads() {
 		return gradRepository.findAll();
 	}
 	
@@ -36,14 +36,14 @@ public class GradController {
 	
 	private void validateGrad(Integer id) {
 		this.gradRepository.findById(id).orElseThrow(
-				() -> new GradNotFoundException(String.valueOf(id)));
+				() -> new CityNotFoundException(String.valueOf(id)));
 	}
 	
 	@PostMapping(path="/grad")
-	public @ResponseBody Grad saveOrUpdateGrad(@RequestBody @Valid Grad grad) {
+	public @ResponseBody City saveOrUpdateGrad(@RequestBody @Valid City grad) {
 		
 		if(grad.getId() == null && gradRepository.findGradByName(grad.getName()) != null){
-			Grad existingCity = gradRepository.findGradByName(grad.getName());
+			City existingCity = gradRepository.findGradByName(grad.getName());
 			grad = existingCity;
 		}
 		

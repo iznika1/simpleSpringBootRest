@@ -2,9 +2,11 @@ package com.konrad.konradservis.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-public class Grad extends Root {
+@Table(name = "GRAD")
+public class City extends Root {
 
 	/**
 	 * 
